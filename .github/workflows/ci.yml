@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test / ${{ matrix.os }} / Go ${{ matrix.go }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        go: ['1.24.x', '1.26.x']
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version: ${{ matrix.go }}
+          cache: true
+      - run: go test -timeout 90s ./...
+      - run: go vet ./...
+      - run: go build ./cmd/stackdoctor
+
+  quality:
+    name: Formatting, race checks, and release targets
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version: '1.26.x'
+          cache: true
+      - name: Check formatting
+        run: test -z "$(gofmt -l cmd internal pkg)"
+      - run: go test -race -timeout 90s ./...
+      - name: Cross-build and validate packaging
+        run: python3 scripts/package.py 0.1.0

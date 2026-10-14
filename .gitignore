@@ -1,0 +1,14 @@
+/dist/
+/coverage.out
+/coverage.html
+/stackdoctor
+/stackdoctor.exe
+*.test
+.qa/
+node_modules/
+.venv/
+venv/
+.env
+.env.local
+stackdoctor-report.json
+stackdoctor-report.md

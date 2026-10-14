@@ -1,0 +1,23 @@
+name: Detector or feature request
+description: Propose a concrete useful check or small improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Project failure this would diagnose
+      description: Describe a real trigger and the repair a developer needs.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Proposed check and scope
+      description: Which files or existing probes prove this? Include a safe fixture if possible.
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Privacy, path boundaries, and uncertainty
+      description: State what should stay unverified and what must never be executed or exported.

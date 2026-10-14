@@ -1,0 +1,36 @@
+
+  ◈ STACKDOCTOR                                                                                                         v0.1.0  /  BLOCKED
+  node-missing-deps  /  Node.js   1 errors   2 warnings   5 passed   0 info
+
+
+  DIAGNOSTIC MAP        OVERVIEW / 3                        ISSUE INSPECTOR
+
+  › Overview       3    › ✕ Declared Node packages are …    ERROR  dependencies
+    Runtimes       0        error · dependencies
+    Dependencies   1                                        Declared Node packages are missing
+    Environment    1      ! Environment file may be req…
+    Ports          0        warning · environment           Not found inside this project: vite. This includes development dependencies.
+    Configuration  1
+                          ! No package lockfile             FILE  package.json
+  ──────────────            warning · configuration
+                                                            REPAIR PLAN
+  LOCAL / PRIVATE                                           Review before running
+  Repairs for review
+  No telemetry                                              Review install scripts and the lockfile before installing project
+                                                            dependencies.
+  [ ] categories
+  Tab switch focus                                          $ npm install
+
+                                                            ID  node.dependencies.missing
+
+
+
+
+
+
+
+
+
+  / search   a passed   r rescan   ? help   q quit
+  CATEGORIES  ·  Overview  ·  104ms  ·  no commands executed
+

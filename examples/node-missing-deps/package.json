@@ -1,0 +1,7 @@
+{
+  "name": "stackdoctor-example",
+  "private": true,
+  "scripts": { "dev": "vite --port 5173" },
+  "engines": { "node": ">=20" },
+  "devDependencies": { "vite": "^6.0.0" }
+}

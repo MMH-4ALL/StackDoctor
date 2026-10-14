@@ -1,0 +1,34 @@
+name: Bug report
+description: A diagnostic is wrong, missing, or fails safely
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not paste environment values, credentials, private URLs, or raw private manifests. Report secret disclosures privately using SECURITY.md."
+  - type: input
+    id: version
+    attributes:
+      label: StackDoctor version
+      placeholder: Output of stackdoctor --version
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Operating system and terminal
+      placeholder: Windows 11 / Windows Terminal, or Linux / terminal name
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction and sanitized project fixture
+      description: Include the command and a minimal public or sanitized manifest.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
