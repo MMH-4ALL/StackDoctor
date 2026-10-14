@@ -1,6 +1,6 @@
 module github.com/MMH-4ALL/StackDoctor
 
-go 1.24.0
+go 1.26.0
 
 require (
 	github.com/Masterminds/semver/v3 v3.3.1
@@ -9,7 +9,7 @@ require (
 	github.com/charmbracelet/lipgloss v1.1.0
 	github.com/charmbracelet/x/ansi v0.10.1
 	github.com/pelletier/go-toml/v2 v2.2.4
-	golang.org/x/mod v0.24.0
+	golang.org/x/mod v0.42.0
 	golang.org/x/term v0.35.0
 )
 
