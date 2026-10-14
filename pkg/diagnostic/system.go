@@ -92,6 +92,20 @@ func (s *System) probe(ctx context.Context, name string) Tool {
 		t.Problem = "cannot resolve executable"
 		return t
 	}
+	// Check both the discovered path and its canonical target. Windows may
+	// represent the same directory with an 8.3 short name and a long name.
+	if Within(s.ProjectRoot, path) {
+		t.Problem = "project-local executables are not run"
+		return t
+	}
+	if s.ProjectRoot != "" {
+		root, rootErr := filepath.EvalSymlinks(s.ProjectRoot)
+		if rootErr != nil {
+			t.Problem = "cannot resolve the selected project boundary"
+			return t
+		}
+		s.ProjectRoot = root
+	}
 	path, err = filepath.EvalSymlinks(path)
 	if err != nil {
 		t.Problem = "cannot resolve executable"

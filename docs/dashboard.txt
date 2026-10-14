@@ -32,5 +32,5 @@
 
 
   / search   a passed   r rescan   ? help   q quit
-  CATEGORIES  ·  Overview  ·  104ms  ·  no commands executed
+  CATEGORIES  ·  Overview  ·  112ms  ·  no repairs executed
 

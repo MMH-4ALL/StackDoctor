@@ -371,7 +371,7 @@ func (m Model) View() string {
 	} else if m.err != nil {
 		body = panel(severity(diagnostic.Error).Render("SCAN COULD NOT COMPLETE")+"\n\n"+diagnostic.Text(m.err.Error())+"\n\nr rescan · q quit", m.width, bodyH, bg)
 	} else if m.help {
-		body = panel(accent.Render("KEYBOARD GUIDE")+"\n\nTab          Switch categories / findings\n↑ ↓ or j k   Move through the focused panel\n[ ]          Previous / next category\nEnter        Open or close the issue detail view\n/            Search titles, details, and finding IDs\nEsc          Clear search / close detail or help\na            Include or hide passed checks\nr            Rescan the project\nPgUp/PgDn    Scroll issue details\nq / Ctrl+C   Quit\n\n"+dim.Render("Reports: stackdoctor report --format json\nRepairs are displayed only. No commands are run."), m.width, bodyH, bg)
+		body = panel(accent.Render("KEYBOARD GUIDE")+"\n\nTab          Switch categories / findings\n↑ ↓ or j k   Move through the focused panel\n[ ]          Previous / next category\nEnter        Open or close the issue detail view\n/            Search titles, details, and finding IDs\nEsc          Clear search / close detail or help\na            Include or hide passed checks\nr            Rescan the project\nPgUp/PgDn    Scroll issue details\nq / Ctrl+C   Quit\n\n"+dim.Render("Reports: stackdoctor report --format json\nRepairs are displayed only. No repairs are run."), m.width, bodyH, bg)
 	} else {
 		panels := []string{}
 		if sideW > 0 {
@@ -394,7 +394,7 @@ func (m Model) View() string {
 	if m.focus == 1 {
 		focus = "FINDINGS"
 	}
-	bottom := panel(clip(searchLine, m.width-4)+"\n"+dim.Render(clip(fmt.Sprintf("%s  ·  %s  ·  %dms  ·  no commands executed", focus, categories[m.category].name, m.report.DurationMS), m.width-4)), m.width, 4, panelBG)
+	bottom := panel(clip(searchLine, m.width-4)+"\n"+dim.Render(clip(fmt.Sprintf("%s  ·  %s  ·  %dms  ·  no repairs executed", focus, categories[m.category].name, m.report.DurationMS), m.width-4)), m.width, 4, panelBG)
 	return lipgloss.JoinVertical(lipgloss.Left, top, body, bottom)
 }
 

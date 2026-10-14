@@ -66,6 +66,12 @@ def package(version: str) -> None:
         checksums.append(f"{digest}  {archive.name}")
         print(archive.name)
     (dist / "checksums.txt").write_text("\n".join(checksums) + "\n", encoding="utf-8")
+    # Verify the final files, not only bytes read while an archive was built.
+    for line in checksums:
+        expected, name = line.split("  ", 1)
+        if hashlib.sha256((dist / name).read_bytes()).hexdigest() != expected:
+            raise SystemExit(f"Checksum verification failed: {name}")
+    print("Verified all final archive checksums")
 
 
 if __name__ == "__main__":
