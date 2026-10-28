@@ -34,9 +34,10 @@ type pyProject struct {
 
 var pyRequirement = regexp.MustCompile(`^([a-zA-Z0-9][a-zA-Z0-9_.-]*)(?:\[[a-zA-Z0-9_,.-]+\])?\s*([<>=!~0-9.*, ]*)$`)
 var pyVersionDir = regexp.MustCompile(`^python[0-9]+\.[0-9]+$`)
+var pyNameSeparators = regexp.MustCompile(`[-_.]+`)
 
 func normalizePy(s string) string {
-	return strings.ToLower(strings.NewReplacer("_", "-", ".", "-").Replace(s))
+	return strings.ToLower(pyNameSeparators.ReplaceAllString(s, "-"))
 }
 
 func pythonConstraint(s string) (string, bool) {
